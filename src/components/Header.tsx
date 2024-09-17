@@ -1,7 +1,10 @@
+import { Navigation } from "./Navigation/Navigation";
+
 const Header = () => {
   return (
     <header>
-      <h1>Header</h1>
+      <h1><img src="logo.svg" alt="logo" /></h1>
+      <Navigation />
     </header>
   );
 }

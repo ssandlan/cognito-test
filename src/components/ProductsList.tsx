@@ -1,44 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-
-// Define the Product type to represent the data fetched from the API
-type Product = {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-};
-
-// Define a custom error interface to handle errors from the API
-interface ProductError extends Error {
-  code?: number;
-  info?: {
-    message: string;
-  };
-}
+import { fetchProducts } from "../util/fetchProducts";
+import { Product } from "../types";
+import { Link } from "react-router-dom";
 
 const ProductsList = () => {
 
   // The useQuery hook is used to fetch the data from the API
   // The queryKey is a unique identifier for the query for caching purposes
   // The queryFn is an async function that fetches the data from the API
+  // Using React Query over React Router for data fetching for the benifits of caching, background fetching, error handling
+  
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["test"],
-    queryFn: async () => {
-      const response = await fetch(
-        "https://s3.eu-west-2.amazonaws.com/techassessment.cognitoedu.org/products.json"
-      );
-
-      if (!response.ok) {
-        const error: ProductError = new Error(
-          "An error occurred while fetching the data."
-        );
-
-        error.code = response.status;
-        error.info = await response.json();
-        throw error;
-      }
-      return response.json();
-    },
+    queryFn: fetchProducts
   });
 
   let content;
@@ -59,7 +33,7 @@ const ProductsList = () => {
       <ul>
         {data.map((product: Product) => (
           <li key={product.id}>
-            {product.name} - {product.price}
+            <Link to={`/product/${product.id}`}>{product.name} - {product.price}</Link>
           </li>
         ))}
       </ul>
