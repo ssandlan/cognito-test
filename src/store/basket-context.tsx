@@ -1,15 +1,23 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import {
   Action,
   BasketContextValue,
   BasketProviderProps,
   BasketState,
+  Product
 } from "../types";
 
 export const BasketContext = createContext<BasketContextValue | null>(null);
 
+const getInitialState = (): Product[] => {
+  const basketItems = localStorage.getItem('basketItems')
+  if (basketItems) console.log(JSON.parse(basketItems))
+  return basketItems ? JSON.parse(basketItems).items as Product[] : []
+}
+console.log(getInitialState())
+
 const initialState: BasketState = {
-  items: [],
+  items: getInitialState(),
   total: 0,
 };
 
@@ -57,6 +65,11 @@ const basketReducer = (state: BasketState, action: Action): BasketState => {
 
 export const BasketContextProvider = ({ children }: BasketProviderProps) => {
   const [state, dispatch] = useReducer(basketReducer, initialState); // reducer function and initial state
+
+  useEffect(() => {
+    // console.log(localStorage.getItem('basketItems'))
+    localStorage.setItem('basketItems', JSON.stringify(state))
+  }, [state])
 
   const ctx: BasketContextValue = {
     items: state.items,
