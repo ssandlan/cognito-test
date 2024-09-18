@@ -7,6 +7,7 @@ import RootLayout from "./components/routes/Root";
 import ErrorPage from "./components/routes/Error";
 import ProductPage from "./components/routes/product/[id]";
 import { BasketContextProvider } from "./store/basket-context";
+import BasketPage from "./components/routes/Basket";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "/products", element: <ProductsPage /> },
       { path: "/product/:id", element: <ProductPage /> },
+      { path: "/basket", element: <BasketPage /> },
     ],
   },
 ]);

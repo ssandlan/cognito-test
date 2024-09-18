@@ -1,5 +1,10 @@
 import { createContext, useContext, useReducer } from "react";
-import { Action, BasketContextValue, BasketProviderProps, BasketState } from "../types";
+import {
+  Action,
+  BasketContextValue,
+  BasketProviderProps,
+  BasketState,
+} from "../types";
 
 export const BasketContext = createContext<BasketContextValue | null>(null);
 
@@ -17,22 +22,30 @@ export const useBasketContext = () => {
   return basketCtx;
 };
 
-
-
 const basketReducer = (state: BasketState, action: Action): BasketState => {
-  const prevItemsState = [...state.items];
+  // const prevItemsState = [...state.items];
+
   switch (action.type) {
     case "ADD_PRODUCT":
+      // add one item to the basket
       return {
-        items: prevItemsState.concat(action.payload),
+        items: state.items.concat(action.payload),
         total: state.total + action.payload.price,
       };
-    case "REMOVE_PRODUCT":
+    case "REMOVE_PRODUCT": {
+      // remove one item of the same id from the basket
+      const index = state.items.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      const newItems = [...state.items];
+      newItems.splice(index, 1);
       return {
-        items: prevItemsState.filter((item) => item.id !== action.payload.id),
+        items: newItems,
         total: state.total - action.payload.price,
       };
+    }
     case "CLEAR_BASKET":
+      // empty the basket array
       return {
         items: [],
         total: 0,
@@ -40,7 +53,7 @@ const basketReducer = (state: BasketState, action: Action): BasketState => {
     default:
       return state;
   }
-}
+};
 
 export const BasketContextProvider = ({ children }: BasketProviderProps) => {
   const [state, dispatch] = useReducer(basketReducer, initialState); // reducer function and initial state

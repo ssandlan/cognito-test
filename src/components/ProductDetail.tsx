@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useBasketContext } from "../store/basket-context";
 import { ProductDetailsProps, ProductList } from "../types";
 import { fetchProducts } from "../util/fetchProducts";
+import Button from "./UI/Button";
 
 const ProductDetails = ({ productId }: ProductDetailsProps) => {
   
@@ -16,6 +17,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
     queryKey: ["test"],
     queryFn: fetchProducts,
   });
+  
 
   let content;
 
@@ -43,7 +45,9 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
         <h2>{product?.name}</h2>
         <p>{product?.description}</p>
         <p>Price: {product?.price}</p>
-        <button onClick={() => basketCtx.addToBasket(product)}>Add to basket</button>
+        <Button onClick={() => basketCtx.addToBasket(product)} buttonType="primary">Add to basket</Button>
+        <Button onClick={() => basketCtx.removeFromBasket(product)} buttonType="secondary">Remove from basket</Button>
+        <Button link to="/basket" buttonType="secondary">View basket</Button>
       </div>
     );
   }

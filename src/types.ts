@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import { PropsWithChildren } from "react";
 
 // Define the Product type to represent the data fetched from the API
 export type Product = {
@@ -18,9 +19,21 @@ export interface ProductError extends Error {
   };
 }
 
+// COMPONENT PROPS TYPES
+
 export type ProductDetailsProps = {
   productId: string | undefined;
 };
+
+export interface ButtonProps extends PropsWithChildren  {
+  link?: boolean;
+  to?: string;
+  onClick?: () => void;
+  buttonType?: "primary" | "secondary" | "tertiary";
+  children: ReactNode;
+};
+
+// END COMPONENT PROPS TYPES
 
 export type BasketState = {
   items: Product[];
