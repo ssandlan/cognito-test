@@ -1,21 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --spinach-100: #2a4c33;
+  --spinach-90: #3f5e47;
+  --spinach-80: #55705c;
+  --spinach-70: #6a8270;
+  --spinach-60: #7f9485;
+  --spinach-50: #95a599;
+  --spinach-40: #aab7ad;
+  --spinach-30: #bfc9c2;
+  --spinach-20: #d4dbd6;
+  --spinach-10: #eaedeb;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --lettuce-100: #00AE4B;
+  --lettuce-90: #1ab55d;
+  --lettuce-80: #33bd6f;
+  --lettuce-70: #4dc681;
+  --lettuce-60: #66ce93;
+  --lettuce-50: #80d6a5;
+  --lettuce-40: #99deb7;
+  --lettuce-30: #b3e6c9;
+  --lettuce-20: #ccefdb;
+  --lettuce-10: ##e6f7ed;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --grey-100: #919B9B;
+  --grey-90: #9ca6a6;
+  --grey-80: #a7b0b0;
+  --grey-70: #b2baba;
+  --grey-60: #bdc4c4;
+  --grey-50: #c8cece;
+  --grey-40: #d3d9d9;
+  --grey-30: #dee3e3;
+  --grey-20: #e9ebeb;
+  --grey-10: #f4f7f7;
+
+  --primary: var(--spinach-100);
+  --secondary: var(--lettuce-100);
+  --tertiary: var(--grey-100);
+  --background: #F5F7F6;
+  --text: #1a1a1a;
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--secondary);
   text-decoration: inherit;
 }
 a:hover {
@@ -23,16 +52,53 @@ a:hover {
 }
 
 body {
+  font-family: "Nunito Sans", sans-serif;
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--background);
+}
+
+main {
+  padding-top: 8em;
 }
 
 h1 {
-  font-size: 3.2em;
+  font-family: "Urbanist", sans-serif;
+  color: var(--primary);
+  font-size: 2.2em;
   line-height: 1.1;
+  text-transform: uppercase;
+  font-weight: 800;
+  @media (min-width: 440px) {
+    font-size: 2.6em;
+  }
+}
+
+h2 {
+  font-family: "Urbanist", sans-serif;
+  color: var(--secondary);
+  font-size: 2.2em;
+  line-height: 1.1;
+  font-weight: 500;
+  @media (min-width: 440px) {
+    font-size: 2.4em;
+  }
+}
+
+h3 {
+  color: var(--text);
+  font-size: 2em;
+  line-height: 1.1;
+  @media (min-width: 440px) {
+    font-size: 2.2em;
+  }
+}
+
+p {
+  color: var(--text);
+  font-size: 1.4em;
+  line-height: 1.5;
 }
 
 button {
@@ -47,22 +113,22 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--secondary);
+  background-color: var(--secondary);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 4px auto var(--secondary);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+#root {
+  margin: 0 auto;
+  width:100%;
+  text-align: center;
+}
+
+.stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }

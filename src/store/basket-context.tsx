@@ -4,21 +4,21 @@ import {
   BasketContextValue,
   BasketProviderProps,
   BasketState,
-  Product
 } from "../types";
 
 export const BasketContext = createContext<BasketContextValue | null>(null);
 
-const getInitialState = (): Product[] => {
-  const basketItems = localStorage.getItem('basketItems')
-  if (basketItems) console.log(JSON.parse(basketItems))
-  return basketItems ? JSON.parse(basketItems).items as Product[] : []
-}
-console.log(getInitialState())
 
+// Check if there are basket items in the local storage and return them, otherwise just return an empty basket
+const getInitialState = (): BasketState => {
+  const basketItems = localStorage.getItem('basketItems')
+  return basketItems ? JSON.parse(basketItems) as BasketState : {items: [], total: 0}
+}
+
+// Initial state of the basket, taken from local storage if there are items in the basket
 const initialState: BasketState = {
-  items: getInitialState(),
-  total: 0,
+  items: getInitialState().items,
+  total: getInitialState().total,
 };
 
 export const useBasketContext = () => {
@@ -49,7 +49,7 @@ const basketReducer = (state: BasketState, action: Action): BasketState => {
       newItems.splice(index, 1);
       return {
         items: newItems,
-        total: state.total - action.payload.price,
+        total: state.total > 0 ? state.total - action.payload.price : 0,
       };
     }
     case "CLEAR_BASKET":

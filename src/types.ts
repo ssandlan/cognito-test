@@ -28,9 +28,17 @@ export type ProductDetailsProps = {
 export interface ButtonProps extends PropsWithChildren  {
   link?: boolean;
   to?: string;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   buttonType?: "primary" | "secondary" | "tertiary";
+  small?: boolean;
+  disabled?: boolean;
+  tooltipText?: string;
   children: ReactNode;
+};
+
+export type ProductCardProps = {
+  product: Product;
+  // onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 // END COMPONENT PROPS TYPES

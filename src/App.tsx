@@ -1,4 +1,3 @@
-import "./App.css";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/routes/Home";

@@ -1,7 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchProducts } from "../util/fetchProducts";
+import styled from "styled-components";
 import { Product } from "../types";
-import { Link } from "react-router-dom";
+import { fetchProducts } from "../util/fetchProducts";
+import ProductCard from "./UI/ProductCard";
+
+const StyledProductList = styled.ul`
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0 auto 4rem;
+  width: 90%;
+  max-width: 1200px;
+  padding:0;
+`;
 
 const ProductsList = () => {
 
@@ -9,10 +22,10 @@ const ProductsList = () => {
   // The queryKey is a unique identifier for the query for caching purposes
   // The queryFn is an async function that fetches the data from the API
   // Using React Query over React Router for data fetching for the benifits of caching, background fetching, error handling
-  
+
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["test"],
-    queryFn: fetchProducts
+    queryFn: fetchProducts,
   });
 
   let content;
@@ -24,27 +37,28 @@ const ProductsList = () => {
 
   // Display an error message if there is an error
   if (isError) {
-    content = <><h2>Sorry there has been an error</h2><p>Error: {error.message || "failed to fetch products"}</p></>
+    content = (
+      <>
+        <h2>Sorry there has been an error</h2>
+        <p>Error: {error.message || "failed to fetch products"}</p>
+      </>
+    );
   }
 
   // Display the data if it has been fetched successfully and output the data in a list
   if (data) {
     content = (
-      <ul>
-        {data.map((product: Product) => (
-          <li key={product.id}>
-            <Link to={`/product/${product.id}`}>{product.name} - {product.price}</Link>
-          </li>
-        ))}
-      </ul>
-    )
+      <StyledProductList>
+        {data.map((product: Product) => {
+          return (
+            <ProductCard key={product.id} product={product} />
+          );
+        })}
+      </StyledProductList>
+    );
   }
 
-  return (
-    <div>
-      {content}
-    </div>
-  );
-}
+  return <div>{content}</div>;
+};
 
 export default ProductsList;
