@@ -68,10 +68,38 @@ const buttonStyles = `
   }
 `;
 
+/**
+ * Styled button component.
+ *
+ * This component applies the button styles to a button element.
+ */
 const StyledButton = styled.button`${buttonStyles}`;
 
+/**
+ * Styled link component.
+ *
+ * This component applies the button styles to a Link element.
+ */
 const StyledButtonLink = styled(Link)`${buttonStyles}`;
 
+/**
+   * Renders a styled button or a styled link based on the provided props.
+   *
+   * If the `link` prop is true and the `to` prop is provided, it renders a styled link.
+   * Otherwise, it renders a styled button. The button can be disabled and display a tooltip
+   * when disabled.
+   *
+   * @param {ButtonProps} props - The component props.
+   * @param {boolean} props.link - Determines if the component should render a link.
+   * @param {string} [props.to] - The URL to navigate to if the component renders a link.
+   * @param {boolean} [props.small] - Determines if the button should be rendered in a small size.
+   * @param {string} props.buttonType - The type of the button, used for styling.
+   * @param {React.ReactNode} props.children - The content to be displayed inside the button.
+   * @param {() => void} [props.onClick] - The click handler for the button.
+   * @param {boolean} [props.disabled] - Determines if the button should be disabled.
+   * @param {string} [props.tooltipText] - The tooltip text to display when the button is disabled.
+   * @returns {JSX.Element} - The rendered button or link component.
+   */
 const Button = ({
   link,
   to,
@@ -82,7 +110,8 @@ const Button = ({
   tooltipText,
   onClick,
 }: ButtonProps) => {
-  console.log(tooltipText)
+
+
   if (link && to) {
     return (
       <StyledButtonLink

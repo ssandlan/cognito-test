@@ -5,6 +5,13 @@ import { getProductImgSrc } from "../../util/getProductImgSrc";
 import { useBasketContext } from "../../store/basket-context";
 import styled from "styled-components";
 
+/**
+ * Styled component for the product card.
+ *
+ * This component styles the list item that represents a product card. It includes styles for the card's
+ * position, color, aspect ratio, dimensions, background color, padding, border radius, box shadow, and
+ * transition effects. It also includes hover effects for the card, title, price, and image.
+ */
 const StyledProductCard = styled.li`
   position: relative;
   color: #000;
@@ -95,12 +102,21 @@ const StyledProductCard = styled.li`
     font-size: 1.5rem;
   }
 }
-
-
-
-
 `;
 
+/**
+ * Component to display a product card.
+ *
+ * This component renders a product card with an image, title, price, and a button to add the product to the basket.
+ * The product image is fetched using the getProductImgSrc utility function. The component also uses the basket context
+ * to manage the state of the basket.
+ *
+ * @param {ProductCardProps} props - The component props.
+ * @param {string} props.product.id - The ID of the product.
+ * @param {string} props.product.name - The name of the product.
+ * @param {number} props.product.price - The price of the product.
+ * @returns {JSX.Element} - The rendered product card component.
+ */
 const ProductCard = ({ product }: ProductCardProps) => {
   const basketCtx = useBasketContext();
   return (

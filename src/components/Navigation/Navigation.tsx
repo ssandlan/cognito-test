@@ -63,6 +63,14 @@ const StyledNav = styled.nav`
         }
     }`;
 
+/**
+ * Navigation component for the application.
+ *
+ * This component renders the navigation bar, which includes links to the products page and the basket page.
+ * It uses the basket context to manage the state of the basket.
+ *
+ * @returns {JSX.Element} - The rendered navigation component.
+ */
 export const Navigation = () => {
   const basketCtx = useBasketContext();
 

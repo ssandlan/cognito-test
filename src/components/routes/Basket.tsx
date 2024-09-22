@@ -63,13 +63,31 @@ const ProductImage = styled.div`
   }
 `;
 
+/**
+ * BasketPage component for the application.
+ *
+ * This component renders the basket page, which includes a list of products in the basket.
+ * It uses the basket context to retrieve the items in the basket and displays the count of each product.
+ *
+ * @returns {JSX.Element} - The rendered basket page component.
+ */
 const BasketPage = () => {
   const basketCtx = useBasketContext();
 
+  /**
+   * Counts the occurrences of a product in the basket.
+   *
+   * This function counts how many times a specific product appears in the basket.
+   *
+   * @param {Product[]} arr - The array of products in the basket.
+   * @param {Product} val - The product to count occurrences of.
+   * @returns {number} - The number of occurrences of the product in the basket.
+   */
   // Count the occurances of a product in the basket so the amount of products can be displayed for each product
   const countOccurrences = (arr: Product[], val: Product): number =>
     // compare products based on their id property
     arr.reduce((a, v) => (v.id === val.id ? a + 1 : a), 0);
+
   return (
     <main>
       <StyledBasketContainer>
@@ -190,7 +208,12 @@ const BasketPage = () => {
         </StyledTotal>
         <div className="stacked">
           {/* Checkout functionality not implemented */}
-          <Button onClick={() => {}} buttonType="primary" disabled tooltipText="Sorry, checkout is not available right now">
+          <Button
+            onClick={() => {}}
+            buttonType="primary"
+            disabled
+            tooltipText="Sorry, checkout is not available right now"
+          >
             Checkout
           </Button>
           <Button onClick={() => basketCtx.clearBasket()} buttonType="tertiary">

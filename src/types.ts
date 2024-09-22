@@ -1,7 +1,15 @@
 import { type ReactNode } from "react";
 import { PropsWithChildren } from "react";
 
-// Define the Product type to represent the data fetched from the API
+/**
+ * Represents a product fetched from the API.
+ *
+ * @typedef {Object} Product
+ * @property {number} id - The unique identifier of the product.
+ * @property {string} name - The name of the product.
+ * @property {string} description - The description of the product.
+ * @property {number} price - The price of the product.
+ */
 export type Product = {
   id: number;
   name: string;
@@ -9,9 +17,22 @@ export type Product = {
   price: number;
 };
 
+/**
+ * Represents a list of products.
+ *
+ * @typedef {Product[] | undefined} ProductList
+ */
 export type ProductList = Product[] | undefined;
 
-// Define a custom error interface to handle errors from the API
+/**
+ * Custom error interface to handle errors from the API.
+ *
+ * @interface ProductError
+ * @extends {Error}
+ * @property {number} [code] - The error code.
+ * @property {Object} [info] - Additional error information.
+ * @property {string} info.message - The error message.
+ */
 export interface ProductError extends Error {
   code?: number;
   info?: {
@@ -21,10 +42,23 @@ export interface ProductError extends Error {
 
 // COMPONENT PROPS TYPES
 
+/**
+ * Props for the ProductDetails component.
+ *
+ * @typedef {Object} ProductDetailsProps
+ * @property {string | undefined} productId - The ID of the product to display details for.
+ */
 export type ProductDetailsProps = {
   productId: string | undefined;
 };
 
+/**
+ * Props for the Button component.
+ *
+ * @interface ButtonProps
+ * @extends {PropsWithChildren}
+ * @property {boolean} [link] - Determines if the component should render a link.
+ */
 export interface ButtonProps extends PropsWithChildren  {
   link?: boolean;
   to?: string;

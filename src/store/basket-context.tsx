@@ -9,18 +9,37 @@ import {
 export const BasketContext = createContext<BasketContextValue | null>(null);
 
 
-// Check if there are basket items in the local storage and return them, otherwise just return an empty basket
-const getInitialState = (): BasketState => {
+/**
+ * Retrieves the initial state of the basket from local storage.
+ *
+ * This function checks if there are any items stored in local storage under the key 'basketItems'.
+ * If items are found, it parses and returns them as the initial basket state. If no items are found,
+ * it returns an empty basket state with an empty items array and a total of 0.
+ *
+ * @returns {BasketState} - The initial state of the basket.
+ */const getInitialState = (): BasketState => {
   const basketItems = localStorage.getItem('basketItems')
   return basketItems ? JSON.parse(basketItems) as BasketState : {items: [], total: 0}
 }
 
-// Initial state of the basket, taken from local storage if there are items in the basket
+/**
+ * Initial state of the basket, taken from local storage if there are items in the basket.
+ *
+ * @type {BasketState}
+ */
 const initialState: BasketState = {
   items: getInitialState().items,
   total: getInitialState().total,
 };
 
+/**
+ * Custom hook to use the BasketContext.
+ *
+ * This hook provides access to the basket context. If the context is null, it throws an error.
+ *
+ * @returns {BasketContextType} - The current basket context.
+ * @throws {Error} - Throws an error if the BasketContext is null.
+ */
 export const useBasketContext = () => {
   const basketCtx = useContext(BasketContext);
 
@@ -30,8 +49,16 @@ export const useBasketContext = () => {
   return basketCtx;
 };
 
+/**
+ * Reducer function to manage the state of the basket.
+ *
+ * This function handles actions to add or remove products from the basket.
+ *
+ * @param {BasketState} state - The current state of the basket.
+ * @param {Action} action - The action to be performed on the basket state.
+ * @returns {BasketState} - The new state of the basket after the action is performed.
+ */
 const basketReducer = (state: BasketState, action: Action): BasketState => {
-  // const prevItemsState = [...state.items];
 
   switch (action.type) {
     case "ADD_PRODUCT":
@@ -67,7 +94,6 @@ export const BasketContextProvider = ({ children }: BasketProviderProps) => {
   const [state, dispatch] = useReducer(basketReducer, initialState); // reducer function and initial state
 
   useEffect(() => {
-    // console.log(localStorage.getItem('basketItems'))
     localStorage.setItem('basketItems', JSON.stringify(state))
   }, [state])
 

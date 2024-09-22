@@ -1,3 +1,9 @@
+/**
+ * Enum representing the image sources for various products.
+ *
+ * Each enum value corresponds to a product and its associated image source.
+ * The enum keys are named as 'Product' followed by a unique identifier, and the values are the paths to the product images.
+ */
 export enum ProductImgSrc {
   Product1 = "/images/products/gala-apples.jpg",
   Product2 = "/images/products/ground-beef.jpg",

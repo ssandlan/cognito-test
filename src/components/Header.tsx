@@ -39,6 +39,15 @@ const StyledHeader = styled.header`
   }
 `;
 
+/**
+ * Header component for the application.
+ *
+ * This component renders the header section of the application, which includes a logo and navigation links.
+ * The logo is wrapped in a link that navigates to the home page. The navigation links are rendered by the
+ * Navigation component.
+ *
+ * @returns {JSX.Element} - The rendered header component.
+ */
 const Header = () => {
   return (
     <StyledHeader>

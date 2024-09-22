@@ -69,6 +69,17 @@ const ProductImage = styled.div`
   }
 `;
 
+/**
+ * Component to display the details of a specific product.
+ *
+ * This component fetches product data and displays the details of a specific product based on the provided product ID.
+ * If the data is still being fetched, it shows a loading message. If there is an error, it displays an error message.
+ * Once the data is fetched successfully, it displays the product details.
+ *
+ * @param {ProductDetailsProps} props - The component props.
+ * @param {string} props.productId - The ID of the product to display details for.
+ * @returns {JSX.Element} - The rendered component.
+ */
 const ProductDetails = ({ productId }: ProductDetailsProps) => {
   const basketCtx = useBasketContext();
 
@@ -77,6 +88,16 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
   // The queryFn is an async function that fetches the data from the API
   // Using React Query over React Router for data fetching for the benifits of caching, background fetching, error handling
 
+
+   /**
+   * Fetches product data using the useQuery hook from react-query.
+   *
+   * @returns {Object} - An object containing the fetched data, loading state, error state, and error information.
+   * @property {ProductList} data - The fetched product data.
+   * @property {boolean} isPending - Indicates if the data is still being fetched.
+   * @property {boolean} isError - Indicates if there was an error fetching the data.
+   * @property {Object} error - The error object if there was an error fetching the data.
+   */
   const { data, isPending, isError, error } = useQuery<ProductList>({
     queryKey: ["test"],
     queryFn: fetchProducts,
