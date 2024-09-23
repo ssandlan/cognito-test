@@ -1,6 +1,6 @@
 # Cognito Test Project
 
-This project is a test application that demonstrates the integration of AWS Cognito for user authentication and management. The application includes various components to handle user registration, login, and product management.
+This project is a test online store that recieves a list of products from an external API and allows the user to browse products and add them to their basket. The basket state persists across page refreshes.
 
 ## Table of Contents
 
