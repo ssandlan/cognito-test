@@ -1,4 +1,11 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+/**
+ * 
+ *  Using Context API for state management to allow for easy use of shared state across components.
+ * 
+ */
+
+
+import React, { createContext, useContext, useEffect, useReducer } from "react";
 import {
   Action,
   BasketContextValue,

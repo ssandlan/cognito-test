@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Link } from "react-router-dom";
 import { ProductCardProps } from "../../types";
 import Button from "./Button";
@@ -147,7 +149,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 onClick={(event) => {
                   if (event.defaultPrevented) return; // Exits here if event has been handled
                   event.preventDefault(); // this will prevent the default event from occuring and stopping the event from bubbling up
-                  basketCtx.addToBasket(product);
+                  if(basketCtx) basketCtx.addToBasket(product);
                 }}
                 buttonType="primary"
                 small

@@ -11,11 +11,16 @@ import "swiper/css/scrollbar";
 import styled from "styled-components";
 
 const StyledSlide = styled.div`
-  height: 400px;
+  height: 360px;
   background-color: var(--secondary);
   display: flex;
+  flex-direction: column;
   cursor: pointer;
   margin-bottom: 2rem;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    height: 400px;
+  }
 
   div {
     padding: 1rem;
@@ -24,6 +29,11 @@ const StyledSlide = styled.div`
     justify-content: center;
     align-items: start;
     background-color: var(--secondary);
+    background-image: linear-gradient(
+      to right,
+      var(--primary),
+      var(--secondary)
+    );
     padding: 2rem;
     text-align: left;
 
@@ -34,36 +44,40 @@ const StyledSlide = styled.div`
       font-weight: 700;
       font-size: 1.8rem;
       margin: 0;
-      padding-right: 4rem;
     }
 
     h3 {
-      font-size: 3rem;
+      font-size: 2.2rem;
       color: var(--background);
       text-align: left;
       font-weight: 800;
       text-transform: uppercase;
       margin: 0;
       tex-decoration: underline;
-      padding-right: 4rem;
     }
 
     @media (min-width: 768px) {
       h2 {
         font-size: 2.8rem;
+        padding-right: 4rem;
       }
 
       h3 {
+        padding-right: 4rem;
         font-size: 4.2rem;
       }
     }
   }
 
   img {
-    width: 50%;
-    height: 400px;
+    width: 100%;
+    height: 250px;
+    @media (min-width: 768px) {
+      width: 50%;
+      height: 400px;
+    }
     object-fit: cover;
-    object-position: 20%;
+    object-position: 20% 20%;
   }
 `;
 
