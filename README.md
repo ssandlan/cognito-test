@@ -20,7 +20,7 @@ This project is a test online store that recieves a list of products from an ext
 1. **Clone the repository:**
 
     ```bash
-    [git clone https://github.com/ssandlan/cognito-test](https://github.com/ssandlan/cognito-test.git)
+    git clone https://github.com/ssandlan/cognito-test
     cd cognito-test
     ```
 
