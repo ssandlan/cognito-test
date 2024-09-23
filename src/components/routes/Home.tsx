@@ -25,7 +25,6 @@ const StyledHomeBody = styled.div`
  */
 const HomePage = () => {
   return (
-    <>
       <main style={{marginTop:"-33px", marginBottom: "3rem"}}>
         <HomeCarousel />
         <StyledHomeBody>
@@ -35,7 +34,6 @@ const HomePage = () => {
         <Button link buttonType="primary" to="/products">View all products</Button>
         </StyledHomeBody>
       </main>
-    </>
   );
 };
 

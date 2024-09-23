@@ -7,17 +7,17 @@ import styled from "styled-components";
 import { getProductImgSrc } from "../util/getProductImgSrc";
 
 const StyledProductDetailsContainer = styled.div`
-width: 100vw;
-max-width:600px;
-main {
-  padding-bottom:3rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  @media (min-width: 440px) {
-    padding-left: 2rem;
-    padding-right: 2rem;
+  width: 100vw;
+  max-width: 600px;
+  main {
+    padding-bottom: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    @media (min-width: 440px) {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
   }
-}
 `;
 
 const StyledControls = styled.div`
@@ -48,7 +48,6 @@ const ProductImage = styled.div`
   display: flex;
   gap: 1rem;
   flex-direction: column;
-
 
   &.product-details-image-container {
     display: flex;
@@ -88,8 +87,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
   // The queryFn is an async function that fetches the data from the API
   // Using React Query over React Router for data fetching for the benifits of caching, background fetching, error handling
 
-
-   /**
+  /**
    * Fetches product data using the useQuery hook from react-query.
    *
    * @returns {Object} - An object containing the fetched data, loading state, error state, and error information.
@@ -107,7 +105,11 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
 
   // Display a loading message while the data is being fetched
   if (isPending) {
-    content = <main><p>Loading...</p></main>;
+    content = (
+      <main>
+        <p>Loading...</p>
+      </main>
+    );
   }
 
   // Display an error message if there is an error

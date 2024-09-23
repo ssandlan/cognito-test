@@ -1,10 +1,9 @@
-import React from 'react';
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
 import { Product } from "../types";
 import { fetchProducts } from "../util/fetchProducts";
 import ProductCard from "./UI/ProductCard";
-
 
 /**
  * Styled component for the product list.

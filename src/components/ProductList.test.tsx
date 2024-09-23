@@ -59,9 +59,9 @@ describe("ProductsList Component", () => {
 
     render(
       <BasketContextProvider>
-      <MemoryRouter initialEntries={["/"]}>
-        <ProductsList />
-      </MemoryRouter>
+        <MemoryRouter initialEntries={["/"]}>
+          <ProductsList />
+        </MemoryRouter>
       </BasketContextProvider>
     );
 

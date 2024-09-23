@@ -1,9 +1,8 @@
 /**
- * 
+ *
  *  Using Context API for state management to allow for easy use of shared state across components.
- * 
+ *
  */
-
 
 import React, { createContext, useContext, useEffect, useReducer } from "react";
 import {
@@ -15,7 +14,6 @@ import {
 
 export const BasketContext = createContext<BasketContextValue | null>(null);
 
-
 /**
  * Retrieves the initial state of the basket from local storage.
  *
@@ -24,10 +22,13 @@ export const BasketContext = createContext<BasketContextValue | null>(null);
  * it returns an empty basket state with an empty items array and a total of 0.
  *
  * @returns {BasketState} - The initial state of the basket.
- */const getInitialState = (): BasketState => {
-  const basketItems = localStorage.getItem('basketItems')
-  return basketItems ? JSON.parse(basketItems) as BasketState : {items: [], total: 0}
-}
+ */
+const getInitialState = (): BasketState => {
+  const basketItems = localStorage.getItem("basketItems");
+  return basketItems
+    ? (JSON.parse(basketItems) as BasketState)
+    : { items: [], total: 0 };
+};
 
 /**
  * Initial state of the basket, taken from local storage if there are items in the basket.
@@ -66,7 +67,6 @@ export const useBasketContext = () => {
  * @returns {BasketState} - The new state of the basket after the action is performed.
  */
 const basketReducer = (state: BasketState, action: Action): BasketState => {
-
   switch (action.type) {
     case "ADD_PRODUCT":
       // add one item to the basket
@@ -101,8 +101,8 @@ export const BasketContextProvider = ({ children }: BasketProviderProps) => {
   const [state, dispatch] = useReducer(basketReducer, initialState); // reducer function and initial state
 
   useEffect(() => {
-    localStorage.setItem('basketItems', JSON.stringify(state))
-  }, [state])
+    localStorage.setItem("basketItems", JSON.stringify(state));
+  }, [state]);
 
   const ctx: BasketContextValue = {
     items: state.items,
